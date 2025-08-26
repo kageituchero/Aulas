@@ -1,7 +1,6 @@
 <?php
 include 'conexao.php';
 
-// Funções para criar, listar, atualizar e excluir empréstimos
 function listarEmprestimos($conn) {
     $stmt = $conn->query("SELECT * FROM emprestimos");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -12,5 +11,21 @@ function criarEmprestimo($conn, $id_livro, $id_leitor, $data_emprestimo, $data_d
     $stmt->execute([$id_livro, $id_leitor, $data_emprestimo, $data_devolucao]);
 }
 
-// Adicione funções para atualizar e excluir empréstimos conforme necessário
+function listarEmprestimosAtivos($conn) {
+    $stmt = $conn->query("SELECT * FROM emprestimos WHERE data_devolucao IS NULL");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function listarEmprestimosConcluidos($conn) {
+    $stmt = $conn->query("SELECT * FROM emprestimos WHERE data_devolucao IS NOT NULL");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function listarLivrosEmprestadosPorLeitor($conn, $id_leitor) {
+    $stmt = $conn->prepare("SELECT * FROM emprestimos WHERE id_leitor = ?");
+    $stmt->execute([$id_leitor]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 ?>

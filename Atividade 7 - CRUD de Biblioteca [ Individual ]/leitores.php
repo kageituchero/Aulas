@@ -1,7 +1,6 @@
 <?php
 include 'conexao.php';
 
-// Funções para criar, listar, atualizar e excluir leitores
 function listarLeitores($conn) {
     $stmt = $conn->query("SELECT * FROM leitores");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -12,5 +11,15 @@ function criarLeitor($conn, $nome, $email, $telefone) {
     $stmt->execute([$nome, $email, $telefone]);
 }
 
-// Adicione funções para atualizar e excluir leitores conforme necessário
+function atualizarLeitor($conn, $id, $nome, $email, $telefone) {
+    $stmt = $conn->prepare("UPDATE leitores SET nome = ?, email = ?, telefone = ? WHERE id = ?");
+    $stmt->execute([$nome, $email, $telefone, $id]);
+}
+
+function excluirLeitor($conn, $id) {
+    $stmt = $conn->prepare("DELETE FROM leitores WHERE id = ?");
+    $stmt->execute([$id]);
+}
+
+
 ?>

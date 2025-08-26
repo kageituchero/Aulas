@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Biblioteca CRUD</title>
-    <link rel="stylesheet" href="style.css"> <!-- CSS simples -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Bem-vindo à Biblioteca</h1>

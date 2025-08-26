@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$db = 'biblioteca';
-$user = 'root'; // padrão do XAMPP
-$pass = ''; // padrão do XAMPP
+$db = 'biblioteca7';
+$user = 'root';
+$pass = 'root';
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
